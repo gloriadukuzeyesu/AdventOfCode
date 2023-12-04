@@ -63,11 +63,11 @@ public class GearRatiosPart1 {
         File filePath = new File(path);
         Scanner reader = new Scanner(filePath);
         while (reader.hasNextLine()) {
-            String currentLine = reader.nextLine();
-            char[] row = currentLine.toCharArray();
+            char[] row = reader.nextLine().toCharArray();
             grid[index++] = row;
 
         }
+        reader.close();
         return grid;
     }
 
