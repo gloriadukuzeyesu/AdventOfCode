@@ -40,21 +40,21 @@ public class ScratchcardsPart1 {
                 winningCounts.put(num, winningCounts.getOrDefault(num, 0) + 1);
             }
 
-            int countOfMyWinningNumber = 0;
+            int matchingNumbers = 0;
             for (int num : myNumbers) {
                 if (winningCounts.containsKey(num) && winningCounts.get(num) > 0) {
-                    countOfMyWinningNumber++;
+                    matchingNumbers++;
                     winningCounts.put(num, winningCounts.get(num) - 1);
                 }
             }
 
-            if (countOfMyWinningNumber <= 1) {
-                totalSum += countOfMyWinningNumber;
+            if (matchingNumbers <= 1) {
+                totalSum += matchingNumbers;
             } else {
                 int points = 1;
-                while (countOfMyWinningNumber > 1) {
+                while (matchingNumbers > 1) {
                     points *= 2;
-                    countOfMyWinningNumber--;
+                    matchingNumbers--;
                 }
                 totalSum += points;
             }
