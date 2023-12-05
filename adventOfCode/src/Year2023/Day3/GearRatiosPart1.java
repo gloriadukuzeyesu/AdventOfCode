@@ -49,7 +49,6 @@ public class GearRatiosPart1 {
         }
         return sum;
     }
-
     /**
      * reads the input and make a grid out of it
      *
@@ -117,4 +116,5 @@ public class GearRatiosPart1 {
         }
         return symbolFound;
     }
+
 }
