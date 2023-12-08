@@ -19,54 +19,53 @@ public class Hand {
 
     // to put the hands in order of strength
     private int determineHandType() {
-        boolean isFiveOfKind = true;
-        char firstLabel = cards[0].label;
-        for (Card card : cards) {
-            if (card.label != firstLabel) {
-                isFiveOfKind = false;
-                break;
-            }
-        }
-        if (isFiveOfKind) {
-            return 7;
-        }
-
-        // deterFour of a kind, where four cards have the same
+        // Four of a kind, where four cards have the same
         // label and one card has a different label: AA8AA
         Map<Character, Integer> map = new HashMap<>();
         for (Card card : cards) {
             map.put(card.label, map.getOrDefault(card.label, 0) + 1);
         }
+        boolean isFiveOfKind = true;
+        char firstLabel = cards[0].label;
+        for (char label : map.keySet()) {
+            if (label != 'J' && map.get(label) != 5) {
+                isFiveOfKind = false;
+                break;
+            }
+        }
+
+        if (isFiveOfKind) {
+            return 7;
+        }
+
+
         for (char label : map.keySet()) {
             if (map.get(label) == 4) {
                 return 6;
             }
         }
-
-        // full house
-        boolean isFullHouse1 = false;
-        boolean isPair = false;
-
-        boolean isThreeOfKind = false;
-
+// Check for Full House
+        boolean isFullHouse = false;
+        boolean hasThree = false;
+        boolean hasTwo = false;
         for (char label : map.keySet()) {
             if (map.get(label) == 3) {
-                isFullHouse1 = true;
+                hasThree = true;
             }
             if (map.get(label) == 2) {
-                isPair = true;
+                hasTwo = true;
             }
         }
-
-        if (isFullHouse1 && isPair) {
-            return 5; // full house
+        if (hasThree && hasTwo) {
+            return 5;
         }
 
-        if (isFullHouse1) {
-            // a three of kind
+        // Check for Three of a Kind
+        if (hasThree) {
             return 4;
         }
-        // check two pair
+
+        // Check for Two Pair
         int pairCount = 0;
         for (char label : map.keySet()) {
             if (map.get(label) == 2) {
@@ -74,12 +73,15 @@ public class Hand {
             }
         }
         if (pairCount == 2) {
-            return 3; // Two pair
+            return 3;
         }
+
+        // Check for One Pair
         if (pairCount == 1) {
-            return 2; // one pair
+            return 2;
         }
-        // high card
+
+        // High Card
         return 1;
     }
 

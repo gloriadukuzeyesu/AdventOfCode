@@ -20,7 +20,7 @@ public class Card implements Comparable<Card> {
             case 'A' -> 12;
             case 'K' -> 11;
             case 'Q' -> 10;
-            case 'J' -> 9;
+            case 'J' -> -1;
             case 'T' -> 8;
             case '9' -> 7;
             case '8' -> 6;
