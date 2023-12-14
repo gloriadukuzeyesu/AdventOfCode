@@ -92,7 +92,6 @@ for r, row in enumerate(grid):
         if not within:
             outside.add((r,c))
 
-
 print(len(grid) * len(grid[0])   - len (outside | seen))
 
 
