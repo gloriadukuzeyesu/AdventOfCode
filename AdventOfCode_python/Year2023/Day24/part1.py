@@ -37,11 +37,3 @@ for i, hs1 in enumerate(hailstones):
 print(total)
 
 
-
-
-
-
-
-
-        # print(hs1, " ", hs2)
-
